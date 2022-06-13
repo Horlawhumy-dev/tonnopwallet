@@ -1,4 +1,4 @@
-# TonnopWallet Assessment Employee CRUDAPI
+# Tonnop Assessment Employees CRUD Rest APIs
 
 ###### This repository contains the codes for CRUD endpoints of tonnopwallet assesment. `WELCOME!`
 
