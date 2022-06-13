@@ -13,7 +13,10 @@ def validate_email(email):
 
 
 def validate_reg_number(reg_number):
-    """Check if email is taken."""
+    """Check if reg is taken."""
+    if type(reg_number) != str:
+        raise ValidationError("Registration number must be of type string.")
+   
     if EmployeeModel.objects.filter(reg_number=reg_number).exists():
         raise ValidationError(
             "An employee with that registration already exists."
