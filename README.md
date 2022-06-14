@@ -16,6 +16,6 @@
 - Lastly, Run `python manage.py runserver` to spin up server locally.
 
 
-###Thank You! Happy Coding
+### Thank You! Happy Coding
 
 #### Do not hesitate to reach out if there is any issue. `harof.dev@gmail.com`.
