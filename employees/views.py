@@ -14,8 +14,13 @@ class GetEmployeesView(APIView):
      permission_classes = []
 
      def get(self, request, format=None):
-        employees = EmployeeModel.objects.all()
-        serializer = GetEmployeeSerializer
+          try:
+               employees = EmployeeModel.objects.all()
+          except Exception as err:
+               return Response(
+                    err, status=500
+                    )
+          serializer = GetEmployeeSerializer
         if serializer.is_valid:
             data = serializer(employees, many=True).data
             return Response(
@@ -31,7 +36,13 @@ class GetEmployeeView(APIView):
     permission_classes = []
 
     def get(self, request, pk, format=None):
-        employee = EmployeeModel.objects.get(id=pk)
+          try:
+               employee = EmployeeModel.objects.get(id=pk)
+          except Exception as err:
+               return Response(
+                    err, status=500
+                    )
+        
         serializer = GetEmployeeSerializer
         if serializer.is_valid:
             data = serializer(employee, many=False).data
@@ -64,7 +75,13 @@ class UpdateEmployeeView(APIView):
      permission_classes = []
 
      def put(self, request, pk, *args, **kwargs):
-        comment = EmployeeModel.objects.get(pk=pk)
+          try:
+                    comment = EmployeeModel.objects.get(pk=pk)
+          except Exception as err:
+               return Response(
+                    err, status=404
+                    )
+   
         data = request.data
         serializer = PostEmployeeSerializer
         serializer = serializer(instance=comment, data=data, partial=True)
@@ -92,7 +109,12 @@ class DeleteEmployeeView(APIView):
      permission_classes = []
 
      def delete(self, request, pk, *args, **kwargs):
-        comment = EmployeeModel.objects.get(pk=pk)
+           try:
+                    comment = EmployeeModel.objects.get(pk=pk)
+          except Exception as err:
+               return Response(
+                    err, status=404
+                    )
         comment.delete()
         return Response(
             data=dict(
